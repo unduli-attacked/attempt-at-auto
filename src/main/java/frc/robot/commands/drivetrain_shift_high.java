@@ -33,11 +33,16 @@ public class drivetrain_shift_high extends Command {
     drivetrain.m_left_talon.config_kI(0, robotconfig.m_left_velocity_ki_high, 0);
     drivetrain.m_left_talon.config_kD(0, robotconfig.m_left_velocity_kd_high, 0);
     drivetrain.m_left_talon.config_kF(0, robotconfig.m_left_velocity_kf_high, 0);
-    
+    drivetrain.m_left_talon.config_IntegralZone(0, robotconfig.m_left_velocity_izone_high, 0);
+    drivetrain.m_left_talon.configMaxIntegralAccumulator(0, robotconfig.m_left_velocity_max_integral_high, 0);
+
     drivetrain.m_right_talon.config_kP(0, robotconfig.m_right_velocity_kp_high, 0);
     drivetrain.m_right_talon.config_kI(0, robotconfig.m_right_velocity_ki_high, 0);
     drivetrain.m_right_talon.config_kD(0, robotconfig.m_right_velocity_kd_high, 0);
     drivetrain.m_right_talon.config_kF(0, robotconfig.m_right_velocity_kf_high, 0);
+    drivetrain.m_right_talon.config_IntegralZone(0, robotconfig.m_right_velocity_izone_high, 0);
+    drivetrain.m_right_talon.configMaxIntegralAccumulator(0, robotconfig.m_right_velocity_max_integral_high, 0);
+    
     drivetrain.shifter_solenoid.set(DoubleSolenoid.Value.kReverse);
     // TODO verify that kForward is high gear
 
