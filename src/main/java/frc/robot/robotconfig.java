@@ -1,10 +1,20 @@
 package frc.robot;
 public class robotconfig {
 
+public static final int primary_joystick_port = 0;
+public static final int forward_axis = 0;
+public static final int turn_axis = 1;
+public static final int secondary_joystick_port = 1;
+
+
+
 public static final int drivetrain_solenoid_low_gear_channel = 1;
 public static final int drivetrain_solenoid_high_gear_channel = 2;
-
-
+  /**
+   * This function is called periodically during operator control.
+   * The values are low or high (no caps)
+   */
+public static final String drivetrain_starting_gear = "low"
 
 public static final int m_left_talon_port = 1;
 public static final int s_left_talon_port = 2;
@@ -53,5 +63,8 @@ public static final double m_right_position_kp_high = m_left_position_kp_high;
 public static final double m_right_position_ki_high = m_left_position_ki_high;
 public static final double m_right_position_kd_high = m_left_position_kd_high;
 public static final double m_right_position_kf_high = m_left_position_kf_high;
+
+
+
 
 }

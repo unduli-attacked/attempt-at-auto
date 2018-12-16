@@ -1,6 +1,8 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.sun.java.swing.plaf.windows.TMSchema.Control;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,9 +21,20 @@ public class drivetrain extends Subsystem {
     TalonSRX m_right_talon = new TalonSRX(robotconfig.m_right_talon_port);
     TalonSRX s_right_talon = new TalonSRX(robotconfig.s_right_talon_port);
     DoubleSolenoid shifter_solenoid = new DoubleSolenoid(robotconfig.drivetrain_solenoid_low_gear_channel, robotconfig.drivetrain_solenoid_high_gear_channel);
+    
+    public void init() {
+      s_left_talon.set(ControlMode.Follower, m_left_talon.getDeviceID());
+      s_right_talon.set(ControlMode.Follower, m_right_talon.getDeviceID());
+      if ( robotconfig.drivetrain_starting_gear == "low" ) {
+        setLowGear();
+      }
+      else if ( robotconfig.drivetrain_starting_gear == "high" ) {
+        setHighGear();
+      }
+    }
 
 
-  void setLowGear() {
+  public void setLowGear() {
     m_left_talon.config_kP(0, robotconfig.m_left_velocity_kp_low, 0);
     m_left_talon.config_kI(0, robotconfig.m_left_velocity_ki_low, 0);
     m_left_talon.config_kD(0, robotconfig.m_left_velocity_kd_low, 0);
@@ -35,7 +48,7 @@ public class drivetrain extends Subsystem {
     // TODO verify that kForward is low gear
 
   }
-  void setHighGear() {
+  public void setHighGear() {
     m_left_talon.config_kP(0, robotconfig.m_left_velocity_kp_high, 0);
     m_left_talon.config_kI(0, robotconfig.m_left_velocity_ki_high, 0);
     m_left_talon.config_kD(0, robotconfig.m_left_velocity_kd_high, 0);
@@ -50,7 +63,14 @@ public class drivetrain extends Subsystem {
 
   }
 
+  public void arcade(double forwardspeed, double turnspeed) {
+    double leftspeed = forwardspeed + turnspeed;
+    double rightspeed = forwardspeed - turnspeed;
 
+    m_left_talon.set(ControlMode.Velocity, leftspeed);
+    m_right_talon.set(ControlMode.Velocity, rightspeed);
+    
+  }
 
 
   @Override
