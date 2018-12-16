@@ -28,6 +28,8 @@ public class drivetrain extends Subsystem {
     public void init() {
       s_left_talon.set(ControlMode.Follower, m_left_talon.getDeviceID());
       s_right_talon.set(ControlMode.Follower, m_right_talon.getDeviceID());
+      m_left_talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0); // TODO put encoder stats on smartdashboard
+      m_right_talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0); // TODO put encoder stats on smartdashboard
       if ( robotconfig.drivetrain_starting_gear == "low" ) {
         new drivetrain_shift_low();
       }
@@ -35,13 +37,14 @@ public class drivetrain extends Subsystem {
         new drivetrain_shift_high();
       }
 
-      m_left_talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0); // TODO put encoder stats on smartdashboard
-      m_right_talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0); // TODO put encoder stats on smartdashboard
+
       // TODO do the encoders need to be reversed?
 
     }
 
   public void arcade(double forwardspeed, double turnspeed) {
+    // TODO the xbox controller outputs a number from negative one to one. How do we convert that to velocity, and how are native units involved?
+
     double leftspeed = forwardspeed + turnspeed;
     double rightspeed = forwardspeed - turnspeed;
 
