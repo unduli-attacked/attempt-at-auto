@@ -6,8 +6,6 @@ public class robotconfig {
   public static final int turn_axis = 1;
   public static final int shift_down_button = xboxmap.Buttons.LB_BUTTON;
   public static final int shift_up_button = xboxmap.Buttons.RB_BUTTON;
-
-
   public static final int secondary_joystick_port = 1;
 
   // TalonSRX configuration
@@ -100,7 +98,25 @@ public class robotconfig {
   public static final double m_right_position_max_integral_high = 5;
 
 
+  public static final int elevator_talon_port = 3;
+  public static final int intake_talon_port = 4;
+  public static final int elevator_solenoid_clamp_channel = 1;
+  public static final int elevator_solenoid_open_channel = 2;
 
+
+  public static final double elevator_velocity_kp = 1;
+  public static final double elevator_velocity_ki = 0;
+  public static final double elevator_velocity_kd = 0;
+  public static final double elevator_velocity_kf = 0;
+  public static final int elevator_velocity_izone = 2;
+  public static final double elevator_max_velocity_integral = 0.5;
+
+  public static final double elevator_position_kp = 1;
+  public static final double elevator_position_ki = 0;
+  public static final double elevator_position_kd = 0;
+  public static final double elevator_position_kf = 0;
+  public static final int elevator_position_izone = 2;
+  public static final double elevator_max_position_integral = 0.5;
 
 
 }
