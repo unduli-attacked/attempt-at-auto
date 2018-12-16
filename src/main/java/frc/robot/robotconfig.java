@@ -14,7 +14,7 @@ public static final int drivetrain_solenoid_high_gear_channel = 2;
    * This function is called periodically during operator control.
    * The values are low or high (no caps)
    */
-public static final String drivetrain_starting_gear = "low"
+public static final String drivetrain_starting_gear = "low";
 
 public static final int m_left_talon_port = 1;
 public static final int s_left_talon_port = 2;
