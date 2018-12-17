@@ -12,16 +12,17 @@ import frc.robot.Robot;
 import frc.robot.subsystems.drivetrain;
 import frc.robot.robotconfig;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-
+import frc.robot.subsystems.intake;
 
 
 /**
  * Shifter command to shift to high gear
  */
-public class drivetrain_shift_high extends Command {
-  public drivetrain_shift_high() {
+public class clamp_auto_action extends Command {
+  public clamp_auto_action() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.drivetrain);
+    requires( Robot.intake );
+
   }
 
   public static final drivetrain drivetrain  = new drivetrain();

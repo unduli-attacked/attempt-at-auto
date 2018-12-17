@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import frc.robot.subsystems.drivetrain;
 import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +23,9 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class Robot extends TimedRobot {
   public static final drivetrain drivetrain  = new drivetrain();
+  public static final elevator elevator = new elevator();
+  public static final intake intake = new intake();
+
   Joystick primaryJoystick = new Joystick(robotconfig.primary_joystick_port);
 
   public static OI m_oi;

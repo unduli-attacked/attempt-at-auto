@@ -42,16 +42,54 @@ public class drivetrain extends Subsystem {
 
     }
 
-  public void arcade(double forwardspeed, double turnspeed) {
-    // TODO the xbox controller outputs a number from negative one to one. How do we convert that to velocity, and how are native units involved?
+    public void setHighGear() {
+      this.m_left_talon.config_kP(0, robotconfig.m_left_velocity_kp_high, 0);
+      this.m_left_talon.config_kI(0, robotconfig.m_left_velocity_ki_high, 0);
+      this.m_left_talon.config_kD(0, robotconfig.m_left_velocity_kd_high, 0);
+      this.m_left_talon.config_kF(0, robotconfig.m_left_velocity_kf_high, 0);
+      this.m_left_talon.config_IntegralZone(0, robotconfig.m_left_velocity_izone_high, 0);
+      this.m_left_talon.configMaxIntegralAccumulator(0, robotconfig.m_left_velocity_max_integral_high, 0);
+  
+      this.m_right_talon.config_kP(0, robotconfig.m_right_velocity_kp_high, 0);
+      this.m_right_talon.config_kI(0, robotconfig.m_right_velocity_ki_high, 0);
+      this.m_right_talon.config_kD(0, robotconfig.m_right_velocity_kd_high, 0);
+      this.m_right_talon.config_kF(0, robotconfig.m_right_velocity_kf_high, 0);
+      this.m_right_talon.config_IntegralZone(0, robotconfig.m_right_velocity_izone_high, 0);
+      this.m_right_talon.configMaxIntegralAccumulator(0, robotconfig.m_right_velocity_max_integral_high, 0);
+      
+      this.shifter_solenoid.set(DoubleSolenoid.Value.kReverse);
+      // TODO verify that kForward is high gear
+    }
 
-    double leftspeed = forwardspeed + turnspeed;
-    double rightspeed = forwardspeed - turnspeed;
+    public void setLowGear() {
+      this.m_left_talon.config_kP(0, robotconfig.m_left_velocity_kp_low, 0);
+      this.m_left_talon.config_kI(0, robotconfig.m_left_velocity_ki_low, 0);
+      this.m_left_talon.config_kD(0, robotconfig.m_left_velocity_kd_low, 0);
+      this.m_left_talon.config_kF(0, robotconfig.m_left_velocity_kf_low, 0);
+      this.m_left_talon.config_IntegralZone(0, robotconfig.m_left_velocity_izone_low, 0);
+      this.m_left_talon.configMaxIntegralAccumulator(0, robotconfig.m_left_velocity_max_integral_low, 0);
+      
+      this.m_right_talon.config_kP(0, robotconfig.m_right_velocity_kp_low, 0);
+      this.m_right_talon.config_kI(0, robotconfig.m_right_velocity_ki_low, 0);
+      this.m_right_talon.config_kD(0, robotconfig.m_right_velocity_kd_low, 0);
+      this.m_right_talon.config_kF(0, robotconfig.m_right_velocity_kf_low, 0);
+      this.m_right_talon.config_IntegralZone(0, robotconfig.m_right_velocity_izone_low, 0);
+      this.m_right_talon.configMaxIntegralAccumulator(0, robotconfig.m_right_velocity_max_integral_low, 0);
+  
+      this.shifter_solenoid.set(DoubleSolenoid.Value.kForward);
+      // TODO verify that kForward is low gear
+    }
 
-    m_left_talon.set(ControlMode.Velocity, leftspeed);
-    m_right_talon.set(ControlMode.Velocity, rightspeed);
-    
-  }
+    public void arcade(double forwardspeed, double turnspeed) {
+      // TODO the xbox controller outputs a number from negative one to one. How do we convert that to velocity, and how are native units involved?
+
+      double leftspeed = forwardspeed + turnspeed;
+      double rightspeed = forwardspeed - turnspeed;
+
+      m_left_talon.set(ControlMode.Velocity, leftspeed);
+      m_right_talon.set(ControlMode.Velocity, rightspeed);
+      
+    }
 
 
   @Override
