@@ -24,7 +24,7 @@ public class elevator extends Subsystem {
   // here. Call these from Commands.
 
   public TalonSRX elevator_talon = new TalonSRX(robotconfig.elevator_talon_port);
-
+  float position_setpoint;
 
   public elevator() {
     super("elevator");
