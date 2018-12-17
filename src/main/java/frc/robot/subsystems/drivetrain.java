@@ -28,8 +28,8 @@ public class drivetrain extends Subsystem {
     public void init() {
       s_left_talon.set(ControlMode.Follower, m_left_talon.getDeviceID());
       s_right_talon.set(ControlMode.Follower, m_right_talon.getDeviceID());
-      m_left_talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0); // TODO put encoder stats on smartdashboard
-      m_right_talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0); // TODO put encoder stats on smartdashboard
+      m_left_talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,10); // TODO put encoder stats on smartdashboard
+      m_right_talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,10); // TODO put encoder stats on smartdashboard
       if ( robotconfig.drivetrain_starting_gear == "low" ) {
         new drivetrain_shift_low();
       }

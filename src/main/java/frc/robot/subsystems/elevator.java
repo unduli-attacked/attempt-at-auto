@@ -10,8 +10,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.robotconfig;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -30,16 +28,22 @@ public class elevator extends Subsystem {
     super("elevator");
   }
 
-  // @Override
-  // public void __init__() {
-  // elevator_talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0); 
-
-  // }
-
-  public void setElevatorSetpoint( float setpoint ){
-    this.position_setpoint = setpoint;
+  public void init() {
+    elevator_talon.config_kP(0, robotconfig.elevator_velocity_kp, 10);
+    elevator_talon.config_kI(0, robotconfig.elevator_velocity_ki, 10);
+    elevator_talon.config_kD(0, robotconfig.elevator_velocity_kd, 10);
+    elevator_talon.config_kF(0, robotconfig.elevator_velocity_kf, 10);
+    elevator_talon.config_IntegralZone(0, robotconfig.elevator_velocity_izone, 10);
+    elevator_talon.configMaxIntegralAccumulator(0, robotconfig.elevator_max_velocity_integral, 10);
+    elevator_talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0); 
+    elevator_talon.setSensorPhase(true);
+		elevator_talon.configVoltageCompSaturation(12, 0);
+		elevator_talon.enableVoltageCompensation(true);
+    elevator_talon.setSelectedSensorPosition(0, 0, 0);
   }
-  
+
+  // TODO methods for setting height based on nested PID
+
 
   @Override
   public void initDefaultCommand() {

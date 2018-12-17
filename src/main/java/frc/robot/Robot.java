@@ -27,6 +27,7 @@ public class Robot extends TimedRobot {
   public static final intake intake = new intake();
 
   Joystick primaryJoystick = new Joystick(robotconfig.primary_joystick_port);
+  Joystick secondaryJoystick = new Joystick(robotconfig.secondary_joystick_port);
 
   public static OI m_oi;
 
@@ -40,10 +41,15 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
+    elevator.init();
+
+
+
+
+    
     // m_chooser.addDefault("Default Auto", new ExampleCommand());
     // chooser.addObject("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);
-    // Joystick secondaryJoystick = new Joystick(robotconfig.secondary_joystick_port);
 
   }
 
@@ -123,12 +129,24 @@ public class Robot extends TimedRobot {
 
   /**
    * This function is called periodically during operator control.
+   * 
    */
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-      
+    
+    /**
+     * Update the arcade drivetrain method
+     */
     drivetrain.arcade(primaryJoystick.getRawAxis(robotconfig.forward_axis), primaryJoystick.getRawAxis(robotconfig.turn_axis));
+    /**
+     * Update the intake speed via joysticks in the setSpeed method
+     */
+    intake.setSpeed(secondaryJoystick.getRawAxis(robotconfig.intakeAxis) - secondaryJoystick.getRawAxis(robotconfig.outtakeAxis));
+    /**
+     * Update the elevator PID method
+     */
+
 
   }
 

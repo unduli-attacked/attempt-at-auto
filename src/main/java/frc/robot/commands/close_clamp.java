@@ -9,26 +9,26 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.drivetrain;
 import frc.robot.subsystems.intake;
+
 
 
 /**
  * Shifter command to shift to high gear
  */
-public class clamp_auto_action extends Command {
-  public clamp_auto_action() {
+public class close_clamp extends Command {
+  public close_clamp() {
     // Use requires() here to declare subsystem dependencies
-    requires( Robot.intake );
-
+    requires(Robot.intake);
   }
 
-  
+  private static final intake intake  = new intake();
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    intake intake = new intake();
-    intake.openClamp();
+    intake.closeClamp();
 
   }
 

@@ -10,8 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.drivetrain_shift_low;
-import frc.robot.commands.drivetrain_shift_high;
+import frc.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -25,13 +24,18 @@ public class OI {
   // number it is.
   
   Joystick primaryJoystick = new Joystick(robotconfig.primary_joystick_port);
+  Joystick secondaryJoystick = new Joystick(robotconfig.secondary_joystick_port);
 
   Button shift_up_button = new JoystickButton(primaryJoystick, robotconfig.shift_up_button);
   Button shift_down_button = new JoystickButton(primaryJoystick, robotconfig.shift_down_button);
+  Button open_clamp_button = new JoystickButton(secondaryJoystick, robotconfig.intakeOpen);
+  Button close_clamp_button = new JoystickButton(secondaryJoystick, robotconfig.intakeClose);
 
   public OI(){
     shift_up_button.whenPressed(new drivetrain_shift_high());
     shift_down_button.whenPressed(new drivetrain_shift_low());
+    open_clamp_button.whenPressed(new open_clamp());
+    close_clamp_button.whenPressed(new close_clamp());
   }
 
   // Button button = new JoystickButton(stick, buttonNumber);
