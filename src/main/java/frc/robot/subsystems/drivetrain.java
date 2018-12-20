@@ -197,7 +197,23 @@ public class drivetrain extends Subsystem {
     // Robot.arcade_running = false;
   }
 
+  /**
+   * Get the current global (absolute) angle of the robot. Make sure
+   * to reset this on robot init.
+   * @return Gyro angle
+   */
+  public double getGlobalGyro() {
+    return Robot.gyro.getAngle();
+  }  
+
+  public void driveStraight(double distance, String gear, double driveSpeed, double targetAngle) {
+    // TODO make this work with position PID! heh
+
     
+
+  }
+
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

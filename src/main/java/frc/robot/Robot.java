@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
   public static wrist wrist = new wrist();
   public static robotconfig robotconfig = new robotconfig();
   public static OI m_oi;
+  public static ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 
   //Compressor stuff
   Compressor compressor = new Compressor(9);
@@ -76,13 +77,12 @@ public class Robot extends TimedRobot {
     // TODO will init be run by default, or do I have to call it?
     drivetrain.init();
     elevator.init();
-    wrist.init();
+    // wrist.init(); // Wrist disabled for now lol
 
     // Set compressor mode
     compressor.setClosedLoopControl(true);
 
     //Setup gyro
-    ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 		gyro.reset();
 
     // Auto setup - TODO setup more auto stuff in it's own file
@@ -113,7 +113,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Intake target speed per OI:", m_oi.getIntakeSpeed());
 
     // SmartDashboard.putNumber("Throttle output", throttle.getRawAxis(1));
-    SmartDashboard.putNumber("Elevator setpoint", 20000);
+    SmartDashboard.putNumber("Elevator axis value", m_oi.getThrottleAxis());
+    SmartDashboard.putNumber("Elevator inches height", elevator.getElevatorAxisInches());
     SmartDashboard.putNumber("Elevator height", elevator.getHeight());
     SmartDashboard.putNumber("Elevator error", 4096-elevator.getHeight());
 
