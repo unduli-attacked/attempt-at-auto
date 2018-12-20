@@ -1,12 +1,7 @@
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
-import frc.robot.robotconfig;
-import frc.robot.subsystems.drivetrain;
 
 /**
  * Default drivetrain command. This *should* be called as the default drivetrain command and be overridden in autononmous (provided auto requires drivetrain???)
@@ -23,33 +18,31 @@ public class arcade_drive extends Command {
     requires(Robot.drivetrain);
   }
 
-  drivetrain drivetrain = new drivetrain();
-
-  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    // TODO add logging
   }
 
-  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
+    Robot.drivetrain.arcadeDriveMethod(Robot.m_oi.getForwardAxis(), Robot.m_oi.getTurnAxis());
   }
 
-  // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return false; // This command never cancels itself
   }
 
-  // Called once after isFinished returns true
+  // Make sure that arcade exits cleanly
   @Override
   protected void end() {
+    Robot.drivetrain.arcadeDriveMethod(0,0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.drivetrain.arcadeDriveMethod(0, 0);
   }
 }

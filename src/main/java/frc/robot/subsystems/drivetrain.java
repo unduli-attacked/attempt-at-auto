@@ -30,7 +30,7 @@ public class drivetrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-    // Robot Robot = new Robot();
+    
 
     public TalonSRX m_left_talon = new TalonSRX(robotconfig.m_left_talon_port);
     public TalonSRX s_left_talon = new TalonSRX(robotconfig.s_left_talon_port);
@@ -38,13 +38,7 @@ public class drivetrain extends Subsystem {
     public TalonSRX s_right_talon = new TalonSRX(robotconfig.s_right_talon_port);
     public String current_gear;
 
-
     // PIDController left_position_pid_controller_HIGH_GEAR = new PIDController(robotconfig.m_left_position_kp_high, robotconfig.m_left_position_ki_high, robotconfig.m_left_position_kd_high, robotconfig.m_left_position_kf_high, source, output) // TODO Implament position PID controllers for left and right drivetrain sides
-
-
-
-    // Robot robot = new Robot(); 
-    
 
     public void init() {
       m_left_talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,30); // TODO put encoder stats on smartdashboard
@@ -110,6 +104,7 @@ public class drivetrain extends Subsystem {
       s_left_talon.setInverted(true);
 
       Robot.drivetrain_shift_high();
+
       current_gear = "high";
     }
 
@@ -163,9 +158,7 @@ public class drivetrain extends Subsystem {
     }
 
 
-  public void arcadeDriveMethod(){
-    double forwardspeed = Robot.m_oi.getForwardAxis() * -1;
-    double turnspeed = Robot.m_oi.getTurnAxis();
+  public void arcadeDriveMethod(double forwardspeed, double turnspeed){
 
     if ((forwardspeed < 0.02) && (forwardspeed > -0.02)) { forwardspeed = 0; }
     if ((turnspeed < 0.01) && (turnspeed > -0.01)) { turnspeed = 0; }
@@ -208,6 +201,6 @@ public class drivetrain extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new arcade_drive());
+    setDefaultCommand(new arcade_drive());
   }
 }
