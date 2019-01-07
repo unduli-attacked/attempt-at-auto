@@ -14,12 +14,12 @@ public class AutoSelector{
     public SendableChooser<Integer> usrCubes;
     public SendableChooser<AutoPath> backupAutoSelect = new SendableChooser<AutoPath>();
 
-    ArrayList<AutoPath> centerPaths = new ArrayList<>;
-    ArrayList<AutoPath> rightPaths = new ArrayList<>;
-    ArrayList<AutoPath> farRightPaths = new ArrayList<>;
-    ArrayList<AutoPath> leftPaths = new ArrayList<>;
-    ArrayList<AutoPath> farLeftPaths = new ArrayList<>;
-    ArrayList<AutoPath> usablePaths = new ArrayList<>;
+    ArrayList<AutoPath> centerPaths = new ArrayList<>();
+    ArrayList<AutoPath> rightPaths = new ArrayList<>();
+    ArrayList<AutoPath> farRightPaths = new ArrayList<>();
+    ArrayList<AutoPath> leftPaths = new ArrayList<>();
+    ArrayList<AutoPath> farLeftPaths = new ArrayList<>();
+    ArrayList<AutoPath> usablePaths = new ArrayList<>();
 
     AutoPath.robotLoc location;
     AutoPath.goals goal;
